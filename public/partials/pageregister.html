@@ -1,0 +1,67 @@
+<!-- WRAPPER -->
+<div id="wrapper" class="theme-blue">
+    <div class="vertical-align-wrap">
+        <div class="vertical-align-middle auth-main">
+            <div class="auth-box">
+                <div class="mobile-logo">
+                    <a href="index.html"><img src="images/feedback.svg" alt="Bulk-Message"></a>
+                </div>
+                <div class="auth-left">
+                    <div class="left-top">
+                        <a href="index.html">
+                            <img src="images/feedback.svg" alt="Bulk-Message">
+                            <span>Bulk-Message</span>
+                        </a>
+                    </div>
+                    <div class="left-slider">
+                        <img src="images/boss.svg" class="svg" class="img-fluid" alt="">
+
+                    </div>
+                </div>
+
+                <div class="auth-right">
+                    <div class="right-top">
+                        <ul class="list-unstyled clearfix d-flex">
+                            <!-- <li><a href="index.html"><i class="fas fa-home"></i></a></li> -->
+                            <li><a href="javascript:void(0);">Help</a></li>
+                            <li><a href="javascript:void(0);">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <div class="header">
+                            <p class="lead">Create an account</p>
+                        </div>
+                        <div class="body">
+                            <form class="form-auth-small" name="registrationForm" ng-submit="saveRegistration(registrationData)">
+                                <div class="form-group">
+                                    <label for="signup-email" class="control-label sr-only">fullname</label>
+                                    <input name="fullname" type="text" class="form-control" id="" placeholder="Full Name" data-ng-model="registrationData.fullname" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-email" class="control-label sr-only">Email</label>
+                                    <input name="email" type="email" class="form-control" id="signup-email" placeholder="Your email" data-ng-model="registrationData.Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="signup-email" class="control-label sr-only">Phone-no</label>
+                                    <input name="phone" type="text" class="form-control" id="signup-email" placeholder="Your Phone-no" data-ng-model="registrationData.phone" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">REGISTER</button>
+                                <div class="bottom">
+                                    <span class="helper-text">Already have an account? <a ui-sref="login" class="log">Login</a></span>
+                                </div>
+                            </form>
+                            <div class="separator-linethrough"><span>OR</span></div>
+
+                            <button ng-click="authenticate('facebook')" class="btn btn-signin-social" id="wrapper"><i class="fa fa-facebook-square"></i> Facebook</button>
+                            <button ng-click="authenticate('google')" class="btn btn-signin-social" id="wrapper"><i class="fa fa-google-plus"></i>google</button>
+                            <button ng-click="authenticate('linkedin')" class="btn btn-signin-social" id="wrapper"><i class="fa fa-linkedin-square"></i> Linkdin</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END WRAPPER -->

@@ -1,0 +1,34 @@
+#wrapper i:hover {
+    margin-top: -3px;
+    text-shadow: 0px 14px 10px rgba(0, 0, 0, 0.4);
+}
+
+#wrapper .fa-linkedin-square {
+    background-color: #0085AE;
+}
+
+#wrapper .fa-facebook-square {
+    background-color: rgb(6, 42, 160);
+}
+
+#wrapper .fa-google-plus {
+    background-color: rgb(253, 47, 10);
+}
+
+#wrapper .fa {
+    border-radius: 50%;
+}
+
+#wrapper .fa {
+    width: 25px;
+    height: 25px;
+    line-height: 24px;
+    text-align: center;
+    /* color: #FFF; */
+    color: white;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
