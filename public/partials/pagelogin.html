@@ -33,14 +33,14 @@
                                     <p class="lead">Log in</p>
                                 </div>
                                 <div class="body">
-                                    <form class="form-auth-small" action="https://thememakker.com/templates/mplify/html/light/index.html">
+                                    <form name="loginForm" valid-submit="login(loginData)" class="form-auth-small">
                                         <div class="form-group">
-                                            <label for="signin-email" class="control-label sr-only">Username</label>
-                                            <input type="text" class="form-control" id="signin-username" value="" placeholder="User Name">
+                                            <label for="signin-email" class="control-label sr-only">Email</label>
+                                            <input type="Email" name="Email" class="form-control" id="signin-username" value="" placeholder="Email Address" data-ng-model="loginData.Email" autocomplete="off" required>
                                         </div>
                                         <div class="form-group">
-                                            <label for="signin-password" class="control-label sr-only">Password</label>
-                                            <input type="password" class="form-control" id="signin-password" value="" placeholder="Password">
+                                            <label for="signin-email" class="control-label sr-only">password</label>
+                                            <input type="password" name="password" class="form-control" id="signin-username" value="" placeholder="password" data-ng-model="loginData.password" autocomplete="off" required>
                                         </div>
                                         <div class="form-group clearfix">
                                             <label class="fancy-checkbox element-left">

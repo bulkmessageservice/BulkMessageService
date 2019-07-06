@@ -11,7 +11,7 @@ var registrationSchema = new schema({
     family_name: { type: String },
     email: { type: String },
     fullname: { type: String },
-    Email: { type: String, unique: true },
+    Email: { type: String },
     phone: { type: Number },
     token: { type: String },
     tokenStatus: { type: Boolean },

@@ -1,5 +1,5 @@
 var firstApp = angular.module('firstApp', [
-    'ui.router', 'satellizer'
+    'ui.router', 'satellizer', 'angular-storage'
 ]);
 
 firstApp.config(function($locationProvider, $authProvider) {
@@ -19,3 +19,17 @@ firstApp.config(function($locationProvider, $authProvider) {
     });
 
 })
+
+
+firstApp.run(['$transitions', '$state', function($transitions, $state) {
+    $transitions.onError({}, function(error) {
+        console.log("Line 14:", error._error.detail);
+        if (error._error.detail.session == true && error._error.detail.role == 'admin') {
+            $state.go('dashboard');
+        } else if (!error._error.detail.session && error._error.detail.role == null) {
+            $state.go('login');
+        } else {
+            $state.go('login');
+        }
+    });
+}]);

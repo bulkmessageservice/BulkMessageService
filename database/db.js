@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-var dburi = 'mongodb://127.0.0.1:27017/bulkMessageService';
+var dburi = 'mongodb://127.0.0.1:27017/BulkMessageService';
 
 mongoose.connect(dburi, { useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
