@@ -7,6 +7,8 @@
         var service = {};
         service.saveRegistration = saveRegistration;
         service.savePassword = savePassword;
+        service.forgotPassword = forgotPassword;
+        service.ResetPassword = ResetPassword;
 
         service.login = login;
         return service;
@@ -21,6 +23,17 @@
             return $http.post('/savePassword', data).then(handleSuccess, handleError);
         }
 
+        function forgotPassword(data) {
+            console.log(data);
+            return $http.post('/forgotPassword', data).then(handleSuccess, handleError);
+
+        }
+
+        function ResetPassword(data) {
+            return $http.post('/ResetPassword', data).then(handleSuccess, handleError);
+
+        }
+
         function login(data) {
             return $http.post('/login', data).then(handleSuccess, handleError);
         }
@@ -33,9 +46,7 @@
             return $q.reject(res.data);
         }
 
-        function login(data) {
-            return $http.post('/login', data).then(handleSuccess, handleError);
-        }
+
 
     }
 })();

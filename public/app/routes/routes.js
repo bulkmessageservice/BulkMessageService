@@ -13,6 +13,7 @@ firstApp.config(function($stateProvider) {
     .state('forgotPassword', {
         url: '/forgotPassword',
         templateUrl: '/partials/pageforgotpassword.html',
+        controller: 'forgotPasswordController'
 
     })
 
@@ -32,6 +33,14 @@ firstApp.config(function($stateProvider) {
             checkCreateUserPassword: checkCreateUserPassword
         }
     })
+
+    .state('resetPassword', {
+        url: '/reset-user-Password',
+        templateUrl: '/partials/resetPassword.html',
+        controller: 'ResetPasswordController'
+
+    })
+
 
     .state('dashboard', {
         url: '/dashboard',

@@ -48,7 +48,7 @@ exports.saveRegistration = function(req, res) {
         console.log(result);
         htmlContent = ejs.render(str, emailJSON);
         var mailOptions = {
-            recipient: result.Email,
+            recipient: result.email,
             subject: 'Create Your Password',
             html: htmlContent
         };
@@ -100,7 +100,7 @@ exports.savePassword = function(req, res) {
     })
 }
 exports.login = function(req, res) {
-    registrationModel.findOne({ Email: req.body.Email }, function(err, result) {
+    registrationModel.findOne({ email: req.body.email }, function(err, result) {
         if (!err) {
             if (result.tokenStatus) {
                 var checkPassword = bcrypt.compareSync(req.body.password, result.password);
@@ -125,6 +125,44 @@ exports.login = function(req, res) {
         }
     });
 }
+
+exports.forgotPassword = function(req, res) {
+    waterfall([
+        function(callback) {
+            registrationModel.findOne({ email: req.body.email }, function(err, result) {
+                if (result) {
+                    callback(null, result);
+                } else {
+                    console.log('The email you have entered does not exist');
+                }
+            })
+        },
+        function(result, callback) {
+            var str = fs.readFileSync(process.cwd() + '/views/forget_password.ejs', 'utf8');
+            var emailJSON = {
+                'name': result.fullname,
+                'accessUrl': req.protocol + "://" + req.get('host') + '/reset-user-Password'
+            };
+
+            htmlContent = ejs.render(str, emailJSON);
+            var mailOptions = {
+                recipient: result.email,
+                subject: 'Create Your Password',
+                html: htmlContent
+            };
+            communication.sendEmail(mailOptions, function(err, result) {
+                console.log(result);
+                res.status(204).json({});
+                console.log("sendEmail-result:", result);
+            })
+        }
+    ])
+
+}
+exports.ResetPassword = function(req, res) {
+    console.log(req.body)
+}
+
 
 exports.mainFn = function(req, res) {
     res.render('layout', { title: "registrationForm" });

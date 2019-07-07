@@ -50,6 +50,37 @@ firstApp.controller('loginController', ['$scope', '$state', 'mainService', 'user
             });
     }
 }]);
+
+firstApp.controller('forgotPasswordController', ['$scope', '%$state', 'mainService', function($scope, $state, mainService) {
+    $scope.forgotPassword = function(data) {
+
+        mainService.forgotPassword(data)
+
+        .then(function(response) {
+                console.log(response);
+                $state.go('login');
+
+            })
+            .catch(function(error) {
+
+            })
+    }
+}])
+
+firstApp.controller('ResetPasswordController', ['$scope', 'mainService', function($scope, mainService) {
+    $scope.ResetPassword = function(data) {
+
+
+        mainService.ResetPassword(data)
+
+        .then(function(response) {
+
+            })
+            .catch(function(error) {
+
+            })
+    }
+}])
 firstApp.controller('dashboardController', ['$scope', '$state', 'userAuth', function($scope, $state, userAuth) {
 
     $scope.logOut = function() {
