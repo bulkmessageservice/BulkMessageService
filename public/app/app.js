@@ -1,12 +1,12 @@
 var firstApp = angular.module('firstApp', [
-    'ui.router', 'satellizer', 'angular-storage'
+    'ui.router', 'satellizer', 'angular-storage', 'toaster'
 ]);
 
 firstApp.config(function($locationProvider, $authProvider) {
     $locationProvider.html5Mode(true);
 
     $authProvider.google({
-        clientId: '750877060752-9id4mesee899ihqk6ufs4ldi367n031u.apps.googleusercontent.com'
+        clientId: '195962043832-im27q3ctoj1nl1rhq25ql7e0j1e35hsk.apps.googleusercontent.com'
     });
 
     $authProvider.facebook({

@@ -1,10 +1,12 @@
-firstApp.controller('registerController', ['$scope', '$auth', '$state', 'mainService', function($scope, $auth, $state, mainService) {
+firstApp.controller('registerController', ['$scope', '$auth', 'toaster', '$state', 'mainService', function($scope, $auth, toaster, $state, mainService) {
     $scope.saveRegistration = function(registrationData) {
+        toaster.pop('success', 'registered', 'user registered');
         console.log('from ctrl', registrationData);
         mainService.saveRegistration(registrationData)
             .then(function(response) {
                 console.log('response-from-server', response);
                 $state.go('login');
+
             })
             .catch(function(error) {})
     }
