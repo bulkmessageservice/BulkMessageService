@@ -1,4 +1,4 @@
-firstApp.controller('registerController', ['$scope', '$auth', 'toaster', '$state', 'mainService', function($scope, $auth, toaster, $state, mainService) {
+firstApp.controller('registerController', ['$scope', '$auth', 'toaster', '$state', 'mainService', 'userAuth', function($scope, $auth, toaster, $state, mainService, userAuth) {
     $scope.saveRegistration = function(registrationData) {
         toaster.pop('success', 'registered', 'user registered');
         console.log('from ctrl', registrationData);
@@ -12,7 +12,17 @@ firstApp.controller('registerController', ['$scope', '$auth', 'toaster', '$state
     }
 
     $scope.authenticate = function(provider) {
-        $auth.authenticate(provider);
+        $auth.authenticate(provider)
+            .then(function(response) {
+                console.log("LIne 17:", response.data.token);
+                var user = {};
+                user.access_token = response.data.token;
+                userAuth.setCurrentUser(user);
+                $state.go('dashboard');
+            })
+            .catch(function(error) {
+
+            })
     };
 
 }])

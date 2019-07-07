@@ -1,55 +1,45 @@
 firstApp.config(function($stateProvider) {
     $stateProvider
-
         .state('login', {
-        url: '/',
-        templateUrl: '/partials/pagelogin.html',
-        controller: 'loginController',
-        resolve: {
-            userBeforeLogin: userBeforeLogin
-        }
-    })
+            url: '/',
+            templateUrl: '/partials/pagelogin.html',
+            controller: 'loginController',
+            resolve: {
+                userBeforeLogin: userBeforeLogin
+            }
+        })
+        .state('forgotPassword', {
+            url: '/forgotPassword',
+            templateUrl: '/partials/pageforgotpassword.html',
+            controller: 'forgotPasswordController'
+        })
+        .state('register', {
+            url: '/register',
+            templateUrl: '/partials/pageregister.html',
+            controller: 'registerController'
+        })
+        .state('createAdminPassword', {
+            url: '/create-user-password/:token',
+            templateUrl: '/partials/create_password.html',
+            controller: 'createAdminPasswordController',
+            resolve: {
+                checkCreateUserPassword: checkCreateUserPassword
+            }
+        })
+        .state('resetPassword', {
+            url: '/reset-user-Password',
+            templateUrl: '/partials/resetPassword.html',
+            controller: 'ResetPasswordController'
 
-    .state('forgotPassword', {
-        url: '/forgotPassword',
-        templateUrl: '/partials/pageforgotpassword.html',
-        controller: 'forgotPasswordController'
-
-    })
-
-    .state('register', {
-        url: '/register',
-        templateUrl: '/partials/pageregister.html',
-        controller: 'registerController'
-
-
-    })
-
-    .state('createAdminPassword', {
-        url: '/create-user-password/:token',
-        templateUrl: '/partials/create_password.html',
-        controller: 'createAdminPasswordController',
-        resolve: {
-            checkCreateUserPassword: checkCreateUserPassword
-        }
-    })
-
-    .state('resetPassword', {
-        url: '/reset-user-Password',
-        templateUrl: '/partials/resetPassword.html',
-        controller: 'ResetPasswordController'
-
-    })
-
-
-    .state('dashboard', {
-        url: '/dashboard',
-        templateUrl: '/partials/dashboard.html',
-        controller: 'dashboardController',
-        resolve: {
-            userAfterLogin: userAfterLogin
-        }
-    })
+        })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: '/partials/dashboard.html',
+            controller: 'dashboardController',
+            resolve: {
+                userAfterLogin: userAfterLogin
+            }
+        })
 
 });
 
