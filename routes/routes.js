@@ -4,7 +4,7 @@ var secret_key = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';
 module.exports = function(app, adminRouter) {
 
     var mainController = require('../controller/main');
-    var mailBankController = require('../controller/dasboard')
+    var mailBankController = require('../controller/mailBank')
     var googleOAuthLogin = require('../controller/googleOAuth');
 
     app.post('/login', mainController.login);

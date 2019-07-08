@@ -44,7 +44,6 @@ firstApp.controller('loginController', ['$scope', '$state', 'mainService', 'user
     $scope.login = function(data) {
         mainService.login(data)
             .then(function(response) {
-                console.log(response);
                 var user = {};
                 user.access_token = response.token;
                 userAuth.setCurrentUser(user);
@@ -82,12 +81,3 @@ firstApp.controller('resetPasswordController', ['$scope', '$state', 'mainService
             })
     }
 }])
-
-firstApp.controller('dashboardController', ['$scope', '$state', 'userAuth', function($scope, $state, userAuth) {
-
-    $scope.logOut = function() {
-        userAuth.setCurrentUser(null);
-        $state.go('login');
-    }
-
-}]);

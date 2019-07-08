@@ -231,9 +231,11 @@ exports.sendTestMail = function(req, res) {
             });
         }
     ], function(err, emailSent, emailLogObj, emailResult) {
-        console.log("Line 234", emailLogObj);
         if (emailSent) {
-            emailLogsModel.saveEmailLogs(emailLogObj);
+            var mailLogObj = new emailLogsModel(emailLogObj);
+            mailLogObj.save(function(err, result) {
+                console.log("Line 237:", result);
+            });
             mailConfigurationModel.updateOne({}, {
                 $set: {
                     successfullyConfigured: "true"
@@ -241,7 +243,8 @@ exports.sendTestMail = function(req, res) {
             }, { upsert: true }, function(err, result) {});
             res.status(200).json({ message: emailResult });
         } else {
-            emailLogsModel.saveEmailLogs(emailLogObj);
+            var mailLogObj = new emailLogsModel(emailLogObj);
+            mailLogObj.save(function(err, result) {});
             res.status(524).json({ message: emailResult });
         }
     });
