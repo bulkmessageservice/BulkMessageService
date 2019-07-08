@@ -46,6 +46,7 @@ exports.saveRegistration = function(req, res) {
         communication.sendEmail(mailOptions, function(err, result) {
             console.log("sendEmail-result:", result);
         })
+        res.status(200).json({ message: 'Successfully' });
     })
 
 };

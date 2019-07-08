@@ -1,7 +1,7 @@
-var jwt = require('jsonwebtoken');
-var secret_key = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';
-
 module.exports = function(app, adminRouter) {
+
+    var jwt = require('jsonwebtoken');
+    var secret_key = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';
 
     var mainController = require('../controller/main');
     var mailBankController = require('../controller/mailBank')
@@ -18,6 +18,7 @@ module.exports = function(app, adminRouter) {
 
 
     adminRouter.use(function(req, res, next) {
+        console.log("Line 21:", req.headers.authorization);
         var token = req.headers.authorization;
         jwt.verify(token, secret_key, function(err, decoded) {
             if (err) {

@@ -2,23 +2,10 @@ var firstApp = angular.module('firstApp', [
     'ui.router', 'satellizer', 'angular-storage', 'toaster',
 ]);
 
-firstApp.config(function($locationProvider, $authProvider, $httpProvider) {
+firstApp.config(function($locationProvider, $urlMatcherFactoryProvider, $httpProvider) {
     $locationProvider.html5Mode(true);
+    $urlMatcherFactoryProvider.strictMode(false);
     $httpProvider.interceptors.push('APIInterceptor');
-
-    $authProvider.google({
-        clientId: '195962043832-im27q3ctoj1nl1rhq25ql7e0j1e35hsk.apps.googleusercontent.com'
-    });
-
-    $authProvider.facebook({
-        clientId: '561347801063464'
-    });
-
-
-    $authProvider.linkedin({
-        clientId: '8138i93yvedf57'
-    });
-
 })
 
 

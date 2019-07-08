@@ -147,6 +147,7 @@ exports.saveMailSetup = function(req, res) {
 
 
 exports.getMailConfigrationData = function(req, res) {
+    console.log("Hello");
     mailConfigurationModel.findOne({}, {
         replyTo: 1,
         cc: 1,
@@ -165,6 +166,7 @@ exports.getMailConfigrationData = function(req, res) {
         smtpService: 1,
         successfullyConfigured: 1
     }, function(err, result) {
+        console.log("Line 169:", result);
         res.status(201).json({ emailSetup: result });
     });
 }

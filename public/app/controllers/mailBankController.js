@@ -1,6 +1,10 @@
 firstApp.controller('mailSetupController', ['$scope', '$state', 'dashboardService', 'getMailConfigrationData', function($scope, $state, dashboardService, getMailConfigrationData) {
 
-    $scope.emailSetupData = getMailConfigrationData.data.emailSetup;
+    if (getMailConfigrationData.data.emailSetup) {
+        $scope.emailSetupData = getMailConfigrationData.data.emailSetup;
+    } else {
+        $scope.emailSetupData = {};
+    }
 
     $scope.saveEmailSetup = function(data) {
         dashboardService.saveMailSetup(data)
@@ -15,7 +19,7 @@ firstApp.controller('mailSetupController', ['$scope', '$state', 'dashboardServic
 
 }]);
 
-firstApp.controller('testMailController', ['$scope', '$state', 'getMailConfigrationData', 'dashboardService', function($scope, $state, getMailConfigrationData, dashboardService) {
+firstApp.controller('testMailController', ['$scope', '$state', 'dashboardService', 'getMailConfigrationData', function($scope, $state, dashboardService, getMailConfigrationData) {
 
     if (getMailConfigrationData.data.emailSetup) {
         $scope.viewForm = true;
@@ -24,6 +28,7 @@ firstApp.controller('testMailController', ['$scope', '$state', 'getMailConfigrat
         $scope.testMailData.content = 'Testing Mail Configration'
     } else {
         $scope.viewForm = false;
+        $scope.testMailData = {};
     }
 
     $scope.sendTestMail = function(data) {

@@ -39,11 +39,13 @@ firstApp.service('APIInterceptor', ['$rootScope', 'userAuth', '$q', function($ro
     var service = this;
     service.request = function(config) {
         var currentUser = userAuth.getCurrentUser();
+        console.log("Line 42:", currentUser);
 
         access_token = currentUser ? currentUser.access_token : null;
 
         if (access_token) {
             config.headers.authorization = access_token;
+            console.log("Line 48:", config.headers.authorization);
         }
         return config;
     };

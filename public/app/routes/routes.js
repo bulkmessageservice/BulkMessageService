@@ -1,4 +1,4 @@
-firstApp.config(function($stateProvider) {
+firstApp.config(function($stateProvider, $authProvider) {
     $stateProvider
         .state('login', {
             url: '/',
@@ -49,7 +49,7 @@ firstApp.config(function($stateProvider) {
             templateUrl: '/partials/emailsetup.html',
             controller: 'mailSetupController',
             resolve: {
-                getMailConfigrationData: ['$http', '$q', '$stateParams', getMailConfigrationData]
+                getMailConfigrationData: ['$http', '$q', getMailConfigrationData]
             }
         })
         .state('dashboard.testMail', {
@@ -57,7 +57,7 @@ firstApp.config(function($stateProvider) {
             templateUrl: '/partials/testmail.html',
             controller: 'testMailController',
             resolve: {
-                getMailConfigrationData: ['$http', '$q', '$stateParams', getMailConfigrationData]
+                getMailConfigrationData: ['$http', '$q', getMailConfigrationData]
             }
         })
 
@@ -70,6 +70,17 @@ firstApp.config(function($stateProvider) {
         }
 
     })
+    $authProvider.google({
+        clientId: '195962043832-im27q3ctoj1nl1rhq25ql7e0j1e35hsk.apps.googleusercontent.com'
+    });
+
+    $authProvider.facebook({
+        clientId: '561347801063464'
+    });
+
+    $authProvider.linkedin({
+        clientId: '8138i93yvedf57'
+    });
 
 
 });
@@ -80,6 +91,7 @@ function checkCreateUserPassword($q, $http, $stateParams) {
         method: 'get',
         url: '/create-user-password/?token=' + $stateParams.token
     }).then(function successCallback(response) {
+        console.log(response);
         if (response.data.result) {
             deferred.resolve(response.data);
         } else {
@@ -134,7 +146,7 @@ function getUserData($http, $q, $stateParams) {
     return deferred.promise;
 }
 
-function getMailConfigrationData($http, $q, $stateParams) {
+function getMailConfigrationData($http, $q) {
     var deferred = $q.defer();
     $http.get('/adminApi/getMailConfigrationData').then(function(data) {
         deferred.resolve(data);
