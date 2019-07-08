@@ -6,7 +6,6 @@ var randomstring = require('randomstring');
 var fs = require('fs');
 var waterfall = require('async-waterfall');
 var ejs = require('ejs');
-var path = require('path');
 var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt-nodejs');
 var secret_key = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';

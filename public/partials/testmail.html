@@ -1,0 +1,85 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-8 col-sm-12">
+                    <h2>Test Mail (Check email configuration)</h2>
+                </div>
+                <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                    <ul class="breadcrumb justify-content-end">
+                        <li class="breadcrumb-item"><a ui-sref="cmsUserDashboard.main"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item">
+                            <a ui-sref="cmsUserDashboard.emailSetup"> Mail Bank</a></li>
+                        <li class="breadcrumb-item active">Logs List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="body" data-ng-if="viewForm">
+                        <form name="testmailForm" class="form-auth" valid-submit="sendTestMail(testMailData)" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Email Address">Email Address *</label>
+                                        <input type="text" class="form-control" name="email" data-ng-model="testMailData.email" data-ng-required="true" data-ng-pattern="formValidation.emailPattern" autocomplete="off">
+                                        <div data-ng-if="testmailForm.$submitted && testmailForm.email.$error.required" class="error-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <span data-ng-bind="formValidation.required"></span> </div>
+                                        <div data-ng-if="testmailForm.$submitted && !testmailForm.email.$error.required && testmailForm.email.$error.pattern" class="error-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <span data-ng-bind="formValidation.validEmail"></span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Subject">Subject *</label>
+                                        <input type="text" class="form-control" name="subject" data-ng-model="testMailData.subject" data-ng-required="true" autocomplete="off">
+                                        <div data-ng-if="testmailForm.$submitted && testmailForm.subject.$error.required" class="error-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <span data-ng-bind="formValidation.required"></span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="Content">Content</label>
+                                        <textarea type="text" class="form-control" name="content" data-ng-model="testMailData.content" autocomplete="off" data-ng-required="true"></textarea>
+                                        <div data-ng-if="testmailForm.$submitted && testmailForm.content.$error.required" class="error-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <span data-ng-bind="formValidation.required"></span> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                            <div>
+                                <hr>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Test Mail</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="body" data-ng-if="!viewForm">
+                        <div class="text-center">
+                            <img src="images/email-setup-error.png" alt="email setup error">
+                            <div class="no-email-account">
+                                <div>Sorry! No email account configured</div>
+                                <div><a ui-sref="cmsUserDashboard.emailSetup">Click Here</a> to configure an email account</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" data-ng-if="setupError">
+            <div class="body">
+                <div class="mail-configuration-error-title"><i class="fas fa-exclamation-triangle"></i> Error occured!</div>
+                <div>
+                    <pre data-ng-bind="setupError"></pre>
+                </div>
+            </div>
+        </div>
+        <div class="card" data-ng-if="setupSuccess">
+            <div class="body">
+                <div class="user-active"><i class="fa fa-check"></i> Successfully configured!</div>
+                <div>
+                    <pre data-ng-bind="setupSuccess"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    <tr data-ng-repeat="user in userList">
+        <td>{{user.fullName}}</td>
+        <td>{{user.address}}</td>
+        <td>
+            <a ui-sref="home.editRegistration({id : user._id})">Edit</a>
+            <a href="" data-ng-click="deleteUser({id: user._id})">Delete</a>
+        </td>
+    </tr>
+
+</table>

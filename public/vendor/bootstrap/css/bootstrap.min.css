@@ -77,7 +77,7 @@ body {
     color: #212529;
     text-align: left;
     background-color: #fff;
-    background-image: url(email.jpg)
+    /* background-image: url(email.jpg) */
 }
 
 [tabindex="-1"]:focus {

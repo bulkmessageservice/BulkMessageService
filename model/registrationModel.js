@@ -13,22 +13,6 @@ var registrationSchema = new schema({
     OAuthType: { type: String },
     created_at: { type: Date, default: Date.now }
 
-
-    // password: { type: String },
-    // sub: { type: String },
-    // name: { type: String },
-    // given_name: { type: String },
-    // family_name: { type: String },
-    // email: { type: String },
-    // fullname: { type: String },
-    // phone: { type: Number },
-    // token: { type: String },
-    // tokenStatus: { type: Boolean },
-    // password: { type: String },
-    // OAuthID: { type: String },
-    // OAuthType: { type: String },
-    // created_at: { type: Date, default: Date.now }
-
 });
 
 exports.registrationModel = mongoose.model('registrationModel', registrationSchema);

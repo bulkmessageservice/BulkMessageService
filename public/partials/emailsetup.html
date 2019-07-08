@@ -1,0 +1,172 @@
+<div id="main-content" data-ng-init="hideEmailSetupNotification()">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-8 col-sm-12">
+                    <h2>Email Setup</h2>
+                </div>
+                <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                    <ul class="breadcrumb justify-content-end">
+                        <li class="breadcrumb-item"><a ui-sref="cmsUserDashboard.main"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item active">Email Setup</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="body">
+                        <form name="emailSetupForm" class="form-auth" valid-submit="saveEmailSetup(emailSetupData)" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Sender Name">Sender Name *</label>
+                                        <input type="text" class="form-control" name="senderName" data-ng-model="emailSetupData.senderName" data-ng-required="true" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Email Address">Email Address *</label>
+                                        <input type="text" class="form-control" name="email" data-ng-model="emailSetupData.email" data-ng-required="true" data-ng-pattern="formValidation.emailPattern" autocomplete="off">
+                                        <div data-ng-if="emailSetupForm.$submitted && emailSetupForm.email.$error.required" class="error-message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <span data-ng-bind="formValidation.required"></span> </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="Reply To">Reply To</label>
+                                        <input type="text" class="form-control" name="replyTo" data-ng-model="emailSetupData.replyTo" data-ng-pattern="formValidation.emailPattern" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="Reply To">CC</label>
+                                        <input type="text" class="form-control" name="cc" data-ng-model="emailSetupData.cc" data-ng-pattern="formValidation.emailPattern" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="Reply To">BCC</label>
+                                        <input type="text" class="form-control" name="bcc" data-ng-model="emailSetupData.bcc" data-ng-pattern="formValidation.emailPattern" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">Account Setup</div>
+                                    <hr>
+                                </div>
+                                <div class="clear-both"></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="smtpService">SMTP Service *</label>
+                                        <select class="form-control select-outline" name="smtpService" data-ng-model="emailSetupData.smtpService" data-ng-required="true">
+                                                <option value="">Select Service</option>
+                                                <option value="1und1">1und1</option>
+                                                <option value="AOL">AOL</option>
+                                                <option value="DebugMail.io">DebugMail.io</option>
+                                                <option value="DynectEmail">DynectEmail</option>
+                                                <option value="FastMail">FastMail</option>
+                                                <option value="GandiMail">GandiMail</option>
+                                                <option value="Gmail">Gmail</option>
+                                                <option value="Godaddy">Godaddy</option>
+                                                <option value="GodaddyAsia">GodaddyAsia</option>
+                                                <option value="GodaddyEurope">GodaddyEurope</option>
+                                                <option value="hot.ee">hot.ee</option>
+                                                <option value="Hotmail">Hotmail</option>
+                                                <option value="iCloud">iCloud</option>
+                                                <option value="mail.ee">mail.ee</option>
+                                                <option value="Mail.ru">Mail.ru</option>
+                                                <option value="Mailgun">Mailgun</option>
+                                                <option value="Mailjet">Mailjet</option>
+                                                <option value="Mandrill">Mandrill</option>
+                                                <option value="Naver">Naver</option>
+                                                <option value="Postmark">Postmark</option>
+                                                <option value="QQ">QQ</option>
+                                                <option value="QQex">QQex</option>
+                                                <option value="SendCloud">SendCloud</option>
+                                                <option value="SendGrid">SendGrid</option>
+                                                <option value="SES">SES</option>
+                                                <option value="Sparkpost">Sparkpost</option>
+                                                <option value="Yahoo">Yahoo</option>
+                                                <option value="Yandex">Yandex</option>
+                                                <option value="Zoho">Zoho</option>
+                                                <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="authentication">Authentication *</label>
+                                    <select class="form-control select-outline" name="authentication" data-ng-model="emailSetupData.authentication" data-ng-required="true">
+                                                <option value="">Select Authentication</option>
+                                                <option value="Login">Login</option>
+                                                <option value="OAuth" data-ng-if="emailSetupData.smtpService=='Gmail'">OAuth</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="username">Username : *</label>
+                                        <input type="email" class="form-control" data-ng-model="emailSetupData.username" name="username" data-ng-pattern="formValidation.emailPattern" autocomplete="off" data-ng-required="true" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-ng-if="emailSetupData.authentication == 'Login'">
+                                    <div class="form-group">
+                                        <label for="password">Password *</label>
+                                        <input type="password" class="form-control" name="password" data-ng-model="emailSetupData.password" data-ng-required="true" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-ng-if="emailSetupData.smtpService == 'Other'">
+                                    <div class="form-group">
+                                        <label for="smtpHost">SMTP Host *</label>
+                                        <input type="text" class="form-control" data-ng-model="emailSetupData.smtpHost" name="smtpHost" data-ng-required="true" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-ng-if="emailSetupData.smtpService == 'Other'">
+                                    <div class="form-group">
+                                        <label for="port">Port *</label>
+                                        <input type="text" class="form-control" only-digits data-ng-model="emailSetupData.port" name="port" data-ng-required="true" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-ng-if="emailSetupData.authentication=='OAuth' && emailSetupData.smtpService=='Gmail'">
+                                    <div class="form-group">
+                                        <label for="clientId">Client Id *</label>
+                                        <input type="text" class="form-control" data-ng-model="emailSetupData.clientId" name="clientId" data-ng-required="true" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-ng-if="emailSetupData.authentication=='OAuth' && emailSetupData.smtpService=='Gmail'">
+                                    <div class="form-group">
+                                        <label for="clientSecret">Client Secret : *</label>
+                                        <input type="text" class="form-control" data-ng-model="emailSetupData.clientSecret" name="clientSecret" data-ng-required="true" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-ng-if="emailSetupData.authentication=='OAuth' && emailSetupData.smtpService=='Gmail'">
+                                    <div class="form-group">
+                                        <label for="refreshToken">Refresh Token *</label>
+                                        <input type="text" class="form-control" data-ng-model="emailSetupData.refreshToken" name="refreshToken" data-ng-required="true" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4" data-ng-if="emailSetupData.authentication=='OAuth' && emailSetupData.smtpService=='Gmail'">
+                                    <div class="form-group">
+                                        <label for="accessToken">Access Token *</label>
+                                        <input type="text" class="form-control" data-ng-model="emailSetupData.accessToken" name="accessToken" data-ng-required="true" autocomplete="off" />
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="pull-left verify-test-mail" data-ng-if="emailSetupData.successfullyConfigured=='false'"><span class="fa fa-exclamation-circle"></span> Please send a <a ui-sref="dashboard.testMail">Test Mail</a> to complete the setup</div>
+                                        <div class="pull-left user-active" data-ng-if="emailSetupData.successfullyConfigured=='true'"><i class="fa fa-check-circle"></i> SMTP has been successfully configured</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                            <div>
+                                <hr>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Save Email Setup</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

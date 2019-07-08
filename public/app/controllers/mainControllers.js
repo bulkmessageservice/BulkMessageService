@@ -18,7 +18,7 @@ firstApp.controller('registerController', ['$scope', '$auth', 'toaster', '$state
                 var user = {};
                 user.access_token = response.data.token;
                 userAuth.setCurrentUser(user);
-                $state.go('dashboard');
+                $state.go('dashboard.home');
             })
             .catch(function(error) {
 
@@ -53,7 +53,7 @@ firstApp.controller('loginController', ['$scope', '$state', 'mainService', 'user
                 var user = {};
                 user.access_token = response.token;
                 userAuth.setCurrentUser(user);
-                $state.go('dashboard');
+                $state.go('dashboard.home');
             })
             .catch(function(error) {
 
@@ -61,7 +61,7 @@ firstApp.controller('loginController', ['$scope', '$state', 'mainService', 'user
     }
 }]);
 
-firstApp.controller('forgotPasswordController', ['$scope', '%$state', 'mainService', function($scope, $state, mainService) {
+firstApp.controller('forgotPasswordController', ['$scope', '$state', 'mainService', function($scope, $state, mainService) {
     $scope.forgotPassword = function(data) {
 
         mainService.forgotPassword(data)
@@ -97,4 +97,50 @@ firstApp.controller('dashboardController', ['$scope', '$state', 'userAuth', func
         userAuth.setCurrentUser(null);
         $state.go('login');
     }
+
 }]);
+
+
+// firstApp.controller('mailSetupController', ['$scope', '$state', 'dashboardService', function($scope, $state, dashboardService) {
+//     $scope.saveMailSetup = function(emailSetupData) {
+//         console.log(data);
+//         console.log('from ctrl', emailSetupData);
+
+//         dashboardService.saveMailSetup(emailSetupData)
+
+//         .then(function(response) {
+//                 console.log('response-from-server', response);
+//                 $state.go('testMale')
+//             })
+//             .catch(function(error) {
+
+//             })
+//     }
+// }])
+
+
+// firstApp.controller('testMailController', ['$scope', '$state', 'dashboardService', function($scope, $state, dashboardService) {
+//     $scope.sendTestMail = function(testMailData) {
+//         console.log(testMaledata);
+//         console.log('from ctrl', testMailData);
+
+//         dashboardService.sendTestMale(testMailData)
+
+//         .then(function(response) {
+//                 console.log('response-from-server', response);
+//             })
+//             .catch(function(error) {
+
+//             })
+//     }
+// }])
+
+// firstApp.controller('loglistController', ['$scope', '$state', 'getUserList', 'dashboardService', function($scope, getUserList, $state, dashboardService) {
+//     console.log(getUserList.data.result);
+//     $scope.userList = getUserList.data.result;
+//     $scope.deleteUser = function(data) {
+//         console.log(data.id);
+//         dashboardService.deleteUser(data.id);
+//     }
+
+// }])

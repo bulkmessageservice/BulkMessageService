@@ -1,9 +1,10 @@
 var firstApp = angular.module('firstApp', [
-    'ui.router', 'satellizer', 'angular-storage', 'toaster'
+    'ui.router', 'satellizer', 'angular-storage', 'toaster',
 ]);
 
-firstApp.config(function($locationProvider, $authProvider) {
+firstApp.config(function($locationProvider, $authProvider, $httpProvider) {
     $locationProvider.html5Mode(true);
+    $httpProvider.interceptors.push('APIInterceptor');
 
     $authProvider.google({
         clientId: '195962043832-im27q3ctoj1nl1rhq25ql7e0j1e35hsk.apps.googleusercontent.com'
