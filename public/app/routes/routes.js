@@ -1,6 +1,5 @@
 firstApp.config(function($stateProvider) {
     $stateProvider
-
         .state('login', {
             url: '/',
             templateUrl: '/partials/pagelogin.html',
@@ -8,11 +7,6 @@ firstApp.config(function($stateProvider) {
             resolve: {
                 userBeforeLogin: userBeforeLogin
             }
-        })
-        .state('forgotPassword', {
-            url: '/forgotPassword',
-            templateUrl: '/partials/pageforgotpassword.html',
-            controller: 'forgotPasswordController'
         })
         .state('register', {
             url: '/register',
@@ -27,11 +21,15 @@ firstApp.config(function($stateProvider) {
                 checkCreateUserPassword: checkCreateUserPassword
             }
         })
+        .state('forgotPassword', {
+            url: '/forgotPassword',
+            templateUrl: '/partials/pageforgotpassword.html',
+            controller: 'forgotPassController'
+        })
         .state('resetPassword', {
-            url: '/reset-user-Password',
+            url: '/reset-user-Password/:resetToken',
             templateUrl: '/partials/resetPassword.html',
-            controller: 'ResetPasswordController'
-
+            controller: 'resetPasswordController'
         })
         .state('dashboard', {
             abstract: true,

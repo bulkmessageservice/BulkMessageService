@@ -1,26 +1,23 @@
+var jwt = require('jsonwebtoken');
+var secret_key = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';
+
 module.exports = function(app, adminRouter) {
 
-    var jwt = require('jsonwebtoken');
-    var secret_key = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';
     var mainController = require('../controller/main');
     var mailBankController = require('../controller/dasboard')
+    var googleOAuthLogin = require('../controller/googleOAuth');
 
-    app.get('/', mainController.mainFn);
+    app.post('/login', mainController.login);
     app.post('/saveRegistration', mainController.saveRegistration);
     app.get('/create-user-password', mainController.createUserPassword);
     app.post('/savePassword', mainController.savePassword);
     app.post('/forgotPassword', mainController.forgotPassword);
-    app.post('/ResetPassword', mainController.ResetPassword);
-    app.post('/login', mainController.login);
+    app.post('/resetPassword', mainController.resetPassword);
 
-
-    var googleOAuthLogin = require('../controller/googleOAuth');
     app.post('/auth/google', googleOAuthLogin.googleLogin);
 
 
     adminRouter.use(function(req, res, next) {
-        console.log("Hello");
-        console.log(req.headers.authorization);
         var token = req.headers.authorization;
         jwt.verify(token, secret_key, function(err, decoded) {
             if (err) {

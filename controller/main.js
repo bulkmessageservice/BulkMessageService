@@ -14,7 +14,6 @@ var communication = require('../communication');
 
 
 exports.saveRegistration = function(req, res) {
-    console.log(req.body);
     var token = randomstring.generate({
         length: 150,
         charset: 'alphanumeric'
@@ -33,18 +32,11 @@ exports.saveRegistration = function(req, res) {
             });
         }
     ], function(err, result) {
-        console.log("result:");
-        console.log(result);
-        if (result == null) {
-            console.log('null result'); //TODO modify
-        }
-        console.log('saved-data:', result);
         var str = fs.readFileSync(process.cwd() + '/views/create_password.ejs', 'utf8');
         var emailJSON = {
             'name': req.body.fullName,
             'accessUrl': req.protocol + "://" + req.get('host') + '/create-user-password/' + token
         };
-        console.log(result);
         htmlContent = ejs.render(str, emailJSON);
         var mailOptions = {
             recipient: result.email,
@@ -58,16 +50,9 @@ exports.saveRegistration = function(req, res) {
 
 };
 exports.getUserList = function(req, res) {
-
     registrationModel.find({}, function(err, result) {
-        console.log(result)
         res.status(200).json({ result: result });
     })
-    exports.getUserData = function(req, res) {
-        registrationModel.findOne({ _id: req.query.id }, function(err, result) {
-            res.status(200).json({ result: result });
-        })
-    }
 }
 
 
@@ -84,9 +69,7 @@ exports.createUserPassword = function(req, res) {
 }
 
 exports.savePassword = function(req, res) {
-    console.log('pass:', req.body.password);
     var hashnewPassword = bcrypt.hashSync(req.body.password);
-    console.log(req.body.token);
     registrationModel.updateOne({ 'token': req.body.token }, {
         $set: {
             password: hashnewPassword,
@@ -103,9 +86,7 @@ exports.login = function(req, res) {
         if (!err) {
             if (result.tokenStatus) {
                 var checkPassword = bcrypt.compareSync(req.body.password, result.password);
-                console.log(checkPassword);
                 if (checkPassword) {
-                    console.log("Line 22:", checkPassword);
                     var jwtObj = {
                         _id: result._id
                     };
@@ -126,13 +107,29 @@ exports.login = function(req, res) {
 }
 
 exports.forgotPassword = function(req, res) {
+    var resetToken = randomstring.generate({
+        length: 150,
+        charset: 'alphanumeric'
+    });
     waterfall([
         function(callback) {
             registrationModel.findOne({ email: req.body.email }, function(err, result) {
                 if (result) {
                     callback(null, result);
                 } else {
-                    console.log('The email you have entered does not exist');
+                    res.status(404).json({ message: 'The email you have entered does not exist' });
+                }
+            })
+        },
+        function(result, callback) {
+            registrationModel.updateOne({ _id: result._id }, {
+                $set: {
+                    resetToken: resetToken,
+                    resetTokenStatus: false
+                }
+            }, function(err, updateResult) {
+                if (updateResult.n == 1) {
+                    callback(null, result);
                 }
             })
         },
@@ -140,7 +137,7 @@ exports.forgotPassword = function(req, res) {
             var str = fs.readFileSync(process.cwd() + '/views/forget_password.ejs', 'utf8');
             var emailJSON = {
                 'name': result.fullname,
-                'accessUrl': req.protocol + "://" + req.get('host') + '/reset-user-Password'
+                'accessUrl': req.protocol + "://" + req.get('host') + '/reset-user-Password/' + resetToken
             };
 
             htmlContent = ejs.render(str, emailJSON);
@@ -158,17 +155,16 @@ exports.forgotPassword = function(req, res) {
     ])
 
 }
-exports.ResetPassword = function(req, res) {
-    console.log(req.body)
+
+exports.resetPassword = function(req, res) {
+    var hashnewPassword = bcrypt.hashSync(req.body.NewPassword);
+    registrationModel.updateOne({ resetToken: req.body.resetToken }, {
+        $set: {
+            password: hashnewPassword,
+            resetTokenStatus: true
+        }
+    }, function(err, updateResult) {
+        console.log(updateResult)
+        res.status(200).json({ message: 'Reset Password successfully' });
+    })
 }
-
-
-exports.mainFn = function(req, res) {
-    res.render('layout', { title: "registrationForm" });
-    registrationModel.find({}, function(err, result) {
-        res.render('layout', {
-            title: "registrationForm",
-            result: result
-        });
-    });
-};
