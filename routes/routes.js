@@ -1,4 +1,4 @@
-module.exports = function(app, adminRouter) {
+module.exports = function(app, adminRouter, multipartMiddleware) {
 
     var jwt = require('jsonwebtoken');
     var secret_key = 'SRCEukzwWJybZkUpHVdA5PtdkFvWPmddyUwtb2';
@@ -33,7 +33,10 @@ module.exports = function(app, adminRouter) {
     adminRouter.post('/saveMailSetup', mailBankController.saveMailSetup);
     adminRouter.get('/getMailConfigrationData', mailBankController.getMailConfigrationData);
     adminRouter.post('/sendTestMail', mailBankController.sendTestMail);
-    // adminRouter.post('/changePassword', mainController.changePassword);
+    adminRouter.get('/getLogList', mailBankController.getLogList);
+    adminRouter.post('/saveSendMailData', mailBankController.saveSendMailData);
+    adminRouter.post('/uploadExcel', multipartMiddleware, mailBankController.uploadExcel);
+
 
 
     app.use('/adminApi', adminRouter);

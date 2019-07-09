@@ -1,0 +1,58 @@
+<div id="main-content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-5 col-md-8 col-sm-12">
+                    <h2>Send Mail</h2>
+                </div>
+                <div class="col-lg-7 col-md-4 col-sm-12 text-right">
+                    <ul class="breadcrumb justify-content-end">
+                        <li class="breadcrumb-item"><a ui-sref="cmsUserDashboard.main"><i class="icon-home"></i></a></li>
+                        <li class="breadcrumb-item">
+                            <a ui-sref="cmsUserDashboard.emailSetup"> Mail Bank</a></li>
+                        <li class="breadcrumb-item active">Logs List</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="body">
+                        <form name="testmailForm" class="form-auth" valid-submit="sendTestMail(sendMailData)" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Email Address">Email Address *</label>
+                                        <input type="text" class="form-control" name="email" data-ng-model="sendMailData.email" data-ng-required="true" data-ng-pattern="formValidation.emailPattern" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Subject">Subject *</label>
+                                        <input type="text" class="form-control" name="subject" data-ng-model="sendMailData.subject" data-ng-required="true" autocomplete="off">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="Content">Content</label>
+                                        <textarea type="text" class="form-control" name="content" data-ng-model="sendMailData.content" autocomplete="off" data-ng-required="true"></textarea>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear-both"></div>
+                            <div>
+                                <hr>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Test Mail</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

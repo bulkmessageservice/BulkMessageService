@@ -11,6 +11,7 @@ var emailLogsSchema = new schema({
     body: { type: String },
     emailStatus: { type: String },
     statusDetails: { type: Array },
+    created_by: { type: String },
     created_at: { type: Date, default: Date.now }
 });
 

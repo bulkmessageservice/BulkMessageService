@@ -1,16 +1,24 @@
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Action</th>
-    </tr>
-    <tr data-ng-repeat="user in userList">
-        <td>{{user.fullName}}</td>
-        <td>{{user.address}}</td>
-        <td>
-            <a ui-sref="home.editRegistration({id : user._id})">Edit</a>
-            <a href="" data-ng-click="deleteUser({id: user._id})">Delete</a>
-        </td>
-    </tr>
+<button ui-sref="dashboard.sendMail">Send Mail</button>
+<button ui-sref="dashboard.excellConfigration">Excell Configration</button>
 
-</table>
+
+<div class="container">
+
+    <table class="table">
+        <tr>
+            <th>sender</th>
+            <th>Reciver</th>
+            <th>EmailStatus</th>
+            <th>Created_at</th>
+        </tr>
+
+        <tr data-ng-repeat="log in logList">
+            <td>{{log.sender}}</td>
+            <td>{{log.to}}</td>
+            <td>{{log.emailStatus}}</td>
+            <td>{{log.created_at}}</td>
+
+        </tr>
+
+    </table>
+</div>

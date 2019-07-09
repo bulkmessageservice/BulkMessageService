@@ -3,8 +3,9 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     cors = require('cors'),
-
-    path = require('path');
+    path = require('path'),
+    multipart = require('connect-multiparty'),
+    multipartMiddleware = multipart();
 
 global.mongoose = mongoose;
 
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({}));
 app.use(express.static(__dirname + '/public'));
 
-require('./routes/routes')(app, adminRouter);
+require('./routes/routes')(app, adminRouter, multipartMiddleware);
 require('./database/db');
 
 app.route('/*').get(function(req, res) {

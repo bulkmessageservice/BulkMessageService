@@ -43,6 +43,8 @@ firstApp.config(function($stateProvider, $authProvider) {
         .state('dashboard.home', {
             url: '',
             templateUrl: '/partials/dashboard_home.html'
+                // controller: 'dashboardHomeController',
+
         })
         .state('dashboard.emailSetup', {
             url: '/emailSetup',
@@ -60,16 +62,28 @@ firstApp.config(function($stateProvider, $authProvider) {
                 getMailConfigrationData: ['$http', '$q', getMailConfigrationData]
             }
         })
+        .state('dashboard.logList', {
+            url: '/loglist',
+            templateUrl: '/partials/loglist.html',
+            controller: 'logListController',
+            resolve: {
+                getLogList: ['$http', '$q', getLogList]
+            }
+        })
+        .state('dashboard.sendMail', {
+            url: '/sendMail',
+            templateUrl: '/partials/sendMail.html',
+            controller: 'sendMailController',
 
-    .state('dashboard.logslist', {
-        url: '/loglist',
-        templateUrl: '/partials/loglist.html',
-        controller: 'loglistController',
-        resolve: {
-            getUserList: ['http', '$q', '$stateParams', getUserList]
-        }
+        })
+        .state('dashboard.excellConfigration', {
+            url: '/excellConfigration',
+            templateUrl: '/partials/excellConfigration.html',
+            controller: 'excellConfigrationController',
 
-    })
+        })
+
+
     $authProvider.google({
         clientId: '195962043832-im27q3ctoj1nl1rhq25ql7e0j1e35hsk.apps.googleusercontent.com'
     });
@@ -130,21 +144,14 @@ function userAfterLogin($q, userAuth) {
     return deferred.promise;
 }
 
-function getUserList($http, $q) {
+function getLogList($http, $q) {
     var deferred = $q.defer();
-    $http.get('/getUserList').then(function(data) {
+    $http.get('/adminApi/getLogList').then(function(data) {
         deferred.resolve(data);
     });
     return deferred.promise;
 }
 
-function getUserData($http, $q, $stateParams) {
-    var deferred = $q.defer();
-    $http.get('/getUserData?id=' + $stateParams.id).then(function(data) {
-        deferred.resolve(data);
-    });
-    return deferred.promise;
-}
 
 function getMailConfigrationData($http, $q) {
     var deferred = $q.defer();

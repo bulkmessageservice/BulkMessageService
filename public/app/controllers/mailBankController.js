@@ -40,4 +40,65 @@ firstApp.controller('testMailController', ['$scope', '$state', 'dashboardService
 
             });
     }
+
+
 }]);
+
+firstApp.controller('logListController', ['$scope', '$state', 'getLogList', function($scope, $state, getLogList) {
+    console.log(getLogList);
+
+    $scope.logList = getLogList.data.result;
+
+}])
+
+firstApp.controller('sendMailController', ['$scope', 'dashboardService', function($scope, dashboardService, ) {
+
+
+    $scope.sendTestMail = function(sendMailData) {
+        console.log(sendMailData);
+        dashboardService.saveSendMailData(sendMailData)
+            .then(function(response) {})
+            .catch(function(error) {})
+    }
+}])
+
+
+firstApp.controller('excellConfigrationController', ['$scope', '$state', 'Upload', function($scope, $state, Upload) {
+
+    $scope.selectFile = function(file) {
+        $scope.fileSelected = true;
+        $scope.fileName = file.name;
+        if (file) {
+            $('#couponError').hide();
+            var fileType = file.name.substr(file.name.lastIndexOf('.') + 1);
+            if (fileType == 'xlsx' || fileType == 'xlsx') {
+                $scope.fileError = false;
+            } else {
+                $scope.fileError = true;
+            }
+        }
+    };
+
+
+    $scope.uploadExcel = function(excelFile) {
+        excelFile.upload = Upload.upload({
+                url: '/adminApi/uploadExcel',
+                data: { excelFile: excelFile },
+            }).then(function(response) {
+
+            })
+            .catch(function(error) {
+                if (error.status == 409) {
+                    $('#couponError').show();
+                    $scope.successArray = error.data.successArray;
+                    $scope.duplicateCouponList = error.data.duplicateArray;
+                    $scope.uploadCouponButtonDisabled = false;
+                    $scope.uploadCouponButtonValue = "UPLOAD EXCEL";
+                } else {
+
+                    $scope.uploadCouponButtonDisabled = false;
+                    $scope.uploadCouponButtonValue = "UPLOAD EXCEL";
+                }
+            });
+    };
+}])
