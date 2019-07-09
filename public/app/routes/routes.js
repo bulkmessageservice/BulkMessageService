@@ -105,7 +105,7 @@ function checkCreateUserPassword($q, $http, $stateParams) {
         method: 'get',
         url: '/create-user-password/?token=' + $stateParams.token
     }).then(function successCallback(response) {
-        console.log(response);
+
         if (response.data.result) {
             deferred.resolve(response.data);
         } else {
@@ -121,7 +121,7 @@ function userBeforeLogin($q, userAuth) {
     var deferred = $q.defer($q, userAuth);
     var currentUser = userAuth.getCurrentUser();
     access_token = currentUser ? currentUser.access_token : null;
-    console.log("Line 75:", access_token);
+
     if (access_token) {
         deferred.reject({ session: true, role: 'admin' });
     } else {
@@ -134,7 +134,7 @@ function userAfterLogin($q, userAuth) {
     var deferred = $q.defer();
     var currentUser = userAuth.getCurrentUser();
     access_token = currentUser ? currentUser.access_token : null;
-    console.log("Line 75:", access_token);
+
     if (access_token) {
         deferred.resolve();
         // deferred.reject({ session: true, role: 'admin' });

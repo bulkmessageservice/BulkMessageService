@@ -22,7 +22,7 @@ var mailCommunication = require('../mailCommunication');
 exports.saveMailSetup = function(req, res) {
     var emailSetObject;
     var emailUnsetObject;
-    console.log(res)
+
     if (req.body.smtpService == "Other") {
         emailSetObject = {
             userId: req.decoded._id,
@@ -148,7 +148,7 @@ exports.saveMailSetup = function(req, res) {
 
 
 exports.getMailConfigrationData = function(req, res) {
-    console.log("Hello");
+
     mailConfigurationModel.findOne({}, {
         replyTo: 1,
         cc: 1,
@@ -167,7 +167,7 @@ exports.getMailConfigrationData = function(req, res) {
         smtpService: 1,
         successfullyConfigured: 1
     }, function(err, result) {
-        console.log("Line 169:", result);
+
         res.status(201).json({ emailSetup: result });
     });
 }
@@ -422,7 +422,7 @@ exports.uploadExcel = function(req, res) {
                     emailLogObj.created_by = req.decoded._id;
                     var mailLogObj = new emailLogsModel(emailLogObj);
                     mailLogObj.save(function(err, result) {
-                        console.log("Line 425:", result);
+
                     });
                     mailConfigurationModel.updateOne({}, {
                         $set: {

@@ -7,7 +7,7 @@ mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
 mongoose.connection.on('connected', function() {
-    console.log('Database is successfully connected');
+
 });
 
 mongoose.connection.on('error', function() {

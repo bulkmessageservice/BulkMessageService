@@ -9,7 +9,7 @@ firstApp.controller('mailSetupController', ['$scope', '$state', 'dashboardServic
     $scope.saveEmailSetup = function(data) {
         dashboardService.saveMailSetup(data)
             .then(function(response) {
-                console.log('response-from-server', response);
+
                 $state.go('testMale')
             })
             .catch(function(error) {
@@ -45,7 +45,7 @@ firstApp.controller('testMailController', ['$scope', '$state', 'dashboardService
 }]);
 
 firstApp.controller('logListController', ['$scope', '$state', 'getLogList', function($scope, $state, getLogList) {
-    console.log(getLogList);
+
 
     $scope.logList = getLogList.data.result;
 
@@ -55,7 +55,7 @@ firstApp.controller('sendMailController', ['$scope', 'dashboardService', functio
 
 
     $scope.sendTestMail = function(sendMailData) {
-        console.log(sendMailData);
+
         dashboardService.saveSendMailData(sendMailData)
             .then(function(response) {})
             .catch(function(error) {})

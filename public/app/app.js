@@ -11,7 +11,7 @@ firstApp.config(function($locationProvider, $httpProvider) {
 
 firstApp.run(['$transitions', '$state', function($transitions, $state) {
     $transitions.onError({}, function(error) {
-        console.log("Line 14:", error._error.detail);
+
         if (error._error.detail.session == true && error._error.detail.role == 'admin') {
             $state.go('dashboard.home');
         } else if (!error._error.detail.session && error._error.detail.role == null) {

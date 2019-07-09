@@ -25,7 +25,7 @@ exports.saveRegistration = function(req, res) {
             var registrationData = new registrationModel(req.body);
             registrationData.save(function(err, result) {
                 if (err) {
-                    console.log('mongodb-error:', err.code);
+
                     res.json({ error: err.code });
                 }
                 callback(null, result);
@@ -44,7 +44,7 @@ exports.saveRegistration = function(req, res) {
             html: htmlContent
         };
         communication.sendEmail(mailOptions, function(err, result) {
-            console.log("sendEmail-result:", result);
+
         })
         res.status(200).json({ message: 'Successfully' });
     })
@@ -148,9 +148,9 @@ exports.forgotPassword = function(req, res) {
                 html: htmlContent
             };
             communication.sendEmail(mailOptions, function(err, result) {
-                console.log(result);
+
                 res.status(204).json({});
-                console.log("sendEmail-result:", result);
+
             })
         }
     ])
@@ -165,7 +165,7 @@ exports.resetPassword = function(req, res) {
             resetTokenStatus: true
         }
     }, function(err, updateResult) {
-        console.log(updateResult)
+
         res.status(200).json({ message: 'Reset Password successfully' });
     })
 }

@@ -18,7 +18,7 @@ module.exports = function(app, adminRouter, multipartMiddleware) {
 
 
     adminRouter.use(function(req, res, next) {
-        console.log("Line 21:", req.headers.authorization);
+
         var token = req.headers.authorization;
         jwt.verify(token, secret_key, function(err, decoded) {
             if (err) {
