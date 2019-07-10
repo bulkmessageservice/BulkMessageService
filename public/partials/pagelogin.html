@@ -5,11 +5,11 @@
             <div class="vertical-align-middle auth-main">
                 <div class="auth-box">
                     <div class="mobile-logo">
-                        <a href="index.html"><img src="images/feedback.svg" alt="Bulk-Message"></a>
+                        <a href=""><img src="images/feedback.svg" alt="Bulk-Message"></a>
                     </div>
                     <div class="auth-left">
                         <div class="left-top">
-                            <a href="index.html">
+                            <a href="">
                                 <img src="images/feedback.svg" alt="Bulk-Message" class="feedback">
                                 <span>Bulk-Message</span>
                             </a>
@@ -21,13 +21,6 @@
                     </div>
                     <div class="left-slider">
                         <div class="auth-right">
-                            <div class="right-top">
-                                <ul class="list-unstyled clearfix d-flex">
-                                    <!-- <li><a href="index.html"><i class="fa fa-home"></i></a></li> -->
-                                    <li><a href="javascript:void(0);">Help</a></li>
-                                    <li><a href="javascript:void(0);">Contact</a></li>
-                                </ul>
-                            </div>
                             <div class="card">
                                 <div class="header">
                                     <p class="lead">Log in</p>
@@ -36,18 +29,13 @@
                                     <form name="loginForm" valid-submit="login(loginData)" class="form-auth-small">
                                         <div class="form-group">
                                             <label for="signin-email" class="control-label sr-only">Email</label>
-                                            <input type="Email" name="email" class="form-control" id="signin-username" value="" placeholder="email Address" data-ng-model="loginData.email" autocomplete="off" required>
+                                            <input type="Email" name="email" class="form-control" id="signin-username" value="" placeholder="email" data-ng-model="loginData.email" autocomplete="off" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="signin-email" class="control-label sr-only">password</label>
                                             <input type="password" name="password" class="form-control" id="signin-username" value="" placeholder="password" data-ng-model="loginData.password" autocomplete="off" required>
                                         </div>
-                                        <div class="form-group clearfix">
-                                            <label class="fancy-checkbox element-left">
-                                            <input type="checkbox">
-                                            <span>Remember me</span>
-                                        </label>
-                                        </div>
+
                                         <button type="submit" class="btn btn-primary btn-lg btn-block" id="btn">LOGIN</button>
                                         <div class="bottom">
                                             <span class="helper-text m-b-10"><a ui-sref="forgotPassword">Forgot password?</a></span>
@@ -55,13 +43,11 @@
                                         </div>
                                     </form>
 
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div ui-view></div>
         </div>
-        <div ui-view></div>
-    </div>

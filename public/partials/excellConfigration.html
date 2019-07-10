@@ -1,7 +1,4 @@
-<!-- <div class="custom-file">
-    <input type="file" class="custom-file-input" ngf-select="selectFile(excelFile)" name="excelFile" data-ng-model="excelFile" data-ng-required="true" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-    <label class="custom-file-label" for="inputGroupFile01">Choose Excel file</label>
-</div> -->
+
 <div>
     <form valid-submit="uploadExcel(excelFile)">
         <div>
@@ -9,7 +6,8 @@
                 <input type="file" class="custom-file-input" ngf-select="selectFile(excelFile)" name="excelFile" data-ng-model="excelFile" data-ng-required="true" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                 <label class="custom-file-label" for="inputGroupFile01">Choose Excel file</label>
             </div>
-            <button type="submit">submit</button>
+            <button type="submit" class="btn btn-outline-secondary">submit</button>
+            
         </div>
     </form>
 </div>

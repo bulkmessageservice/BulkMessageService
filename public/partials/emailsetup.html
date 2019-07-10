@@ -1,4 +1,4 @@
-<div id="main-content" data-ng-init="hideEmailSetupNotification()">
+<div data-ng-init="hideEmailSetupNotification()">
     <div class="container-fluid">
         <div class="block-header">
             <div class="row">
@@ -152,7 +152,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="pull-left verify-test-mail" data-ng-if="emailSetupData.successfullyConfigured=='false'"><span class="fa fa-exclamation-circle"></span> Please send a <a ui-sref="dashboard.testMail">Test Mail</a> to complete the setup</div>
-                                        <div class="pull-left user-active" data-ng-if="emailSetupData.successfullyConfigured=='true'"><i class="fa fa-check-circle"></i> SMTP has been successfully configured</div>
+                                        <div class="pull-left user-active" data-ng-if="emailSetupData.successfullyConfigured=='true'"><i class="fa fa-check-circle"></i> SMTP has been successfully configured <a ui-sref="dashboard.testMail">Test Mail</a></div>
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                 <hr>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary">Save Email Setup</button>
+                                <button type="submit" class="btn btn-outline-info">Save Email Setup</button>
                             </div>
                         </form>
                     </div>

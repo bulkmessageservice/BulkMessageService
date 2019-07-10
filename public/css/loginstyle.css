@@ -36,3 +36,18 @@
 .margin-top-75 {
     margin-top: 75px;
 }
+
+#btn-danger {
+    margin-left: 40%;
+}
+
+
+/* 
+#user-profile {
+    margin-left: 80%;
+    display: inline;
+} */
+
+#user-icon {
+    font-size: 30px;
+}
